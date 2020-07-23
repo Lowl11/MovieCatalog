@@ -30,7 +30,7 @@ namespace MovieCatalog.Dao
         {
             try
             {
-                movie.Author = author;
+                movie.AuthorId = author.Id;
                 Add(movie);
             }
             catch (Exception exception)

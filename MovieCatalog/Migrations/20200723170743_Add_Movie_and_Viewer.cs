@@ -13,7 +13,7 @@ namespace MovieCatalog.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(nullable: false),
+                    Username = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -30,27 +30,27 @@ namespace MovieCatalog.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    PublishYear = table.Column<int>(nullable: false),
+                    PublishYear = table.Column<int>(nullable: true),
                     Producer = table.Column<string>(nullable: true),
                     CoverUrl = table.Column<string>(nullable: true),
-                    author = table.Column<int>(nullable: true)
+                    AuthorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movies_Viewers_author",
-                        column: x => x.author,
+                        name: "FK_Movies_Viewers_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "Viewers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.UniqueConstraint("Title", x => x.Title);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_author",
+                name: "IX_Movies_AuthorId",
                 table: "Movies",
-                column: "author");
+                column: "AuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

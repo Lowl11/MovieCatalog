@@ -19,7 +19,8 @@ namespace MovieCatalog.Models
 
         public string CoverUrl { get; set; }
 
-        [ForeignKey("author")]
+        public int AuthorId { get; set; }
+
         public Viewer Author { get; set; }
 
     }

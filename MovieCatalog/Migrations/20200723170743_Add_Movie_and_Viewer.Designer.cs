@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieCatalog.Migrations
 {
     [DbContext(typeof(MovieCatalogContext))]
-    [Migration("20200723153602_Add_Movie_and_Viewer")]
+    [Migration("20200723170743_Add_Movie_and_Viewer")]
     partial class Add_Movie_and_Viewer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,9 @@ namespace MovieCatalog.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
@@ -37,18 +40,15 @@ namespace MovieCatalog.Migrations
                     b.Property<string>("Producer")
                         .HasColumnType("text");
 
-                    b.Property<int>("PublishYear")
+                    b.Property<int?>("PublishYear")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<int?>("author")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("author");
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Movies");
                 });
@@ -75,7 +75,9 @@ namespace MovieCatalog.Migrations
                 {
                     b.HasOne("MovieCatalog.Models.Viewer", "Author")
                         .WithMany()
-                        .HasForeignKey("author");
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

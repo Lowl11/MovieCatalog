@@ -21,6 +21,15 @@ namespace MovieCatalog.Dao
             return viewer;
         }
 
+        public Viewer Register(string username, string password)
+        {
+            Viewer viewer = new Viewer();
+            viewer.Username = username;
+            viewer.Password = password;
+            Add(viewer);
+            return viewer;
+        }
+
         public Viewer FindViewerByUsername(string username)
         {
             return GetAll()

@@ -32,7 +32,7 @@ namespace MovieCatalog.Controllers
                 return Redirect("/");
 
             var vm = new AuthViewModel();
-            vm.LoginPostUrl = LoginPostActionName;
+            vm.FormUrl = LoginPostActionName;
             return View("~/Views/Auth/Login.cshtml", vm);
         }
 
@@ -47,6 +47,28 @@ namespace MovieCatalog.Controllers
 
             ViewerHelper.SetCurrent(HttpContext, viewer);
             return Redirect("/");
+        }
+
+        public const string RegisterPageActionName = "register";
+        [ActionName(RegisterPageActionName), HttpGet]
+        public IActionResult RegisterPage()
+        {
+            var vm = new AuthViewModel();
+            vm.FormUrl = RegisterPostActionName;
+            return View("~/Views/Auth/Register.cshtml", vm);
+        }
+
+        public const string RegisterPostActionName = "register";
+        [ActionName(RegisterPostActionName), HttpPost]
+        public IActionResult Register(string username, string password, string repassword)
+        {
+            if (!password.Equals(repassword))
+                return ControllerRedirect("register");
+            var viewerDaoManager = new ViewerDaoManager(_context);
+            var viewer = viewerDaoManager.Register(username, password);
+            if (viewer == null)
+                return ControllerRedirect("register");
+            return ControllerRedirect("login");
         }
 
         public const string LogoutActionName = "logout";

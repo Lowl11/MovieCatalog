@@ -1,0 +1,8 @@
+﻿@model MovieCatalog.ViewModels.AuthViewModel
+
+<form method="post" action="@Model.FormUrl">
+    <input type="text" name="username" placeholder="Имя пользователя" class="form-control" />
+    <input type="password" name="password" placeholder="Пароль" class="form-control" />
+    <input type="password" name="repassword" placeholder="Повтор пароля" class="form-control" />
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+</form>

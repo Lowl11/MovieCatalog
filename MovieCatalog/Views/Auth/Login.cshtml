@@ -1,6 +1,6 @@
-﻿<h1>Login page</h1>
+﻿@model MovieCatalog.ViewModels.AuthViewModel
 
-<form method="post" action="">
+<form method="post" action="@Model.FormUrl">
     <input class="form-control" type="text" name="username" placeholder="Имя пользователя" />
     <input class="form-control" type="password" name="password" placeholder="Пароль" />
     <button type="submit" class="btn btn-primary">Авторизоваться</button>

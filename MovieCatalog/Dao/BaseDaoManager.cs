@@ -23,5 +23,11 @@ namespace MovieCatalog.Dao
             return _context.Set<T>();
         }
 
+        protected void Add(T record)
+        {
+            _context.Add(record);
+            _context.SaveChanges();
+        }
+
     }
 }

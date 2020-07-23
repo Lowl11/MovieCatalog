@@ -8,7 +8,7 @@ namespace MovieCatalog.ViewModels
     public class AuthViewModel
     {
 
-        public string LoginPostUrl { get; set; }
+        public string FormUrl { get; set; }
 
     }
 }

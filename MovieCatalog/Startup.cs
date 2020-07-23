@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieCatalog.Dao;
+using MovieCatalog.Helpers;
 
 namespace MovieCatalog
 {
@@ -26,6 +28,15 @@ namespace MovieCatalog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSession();
+            services.AddMvc();
+
+            RegisterTypes(services);
+        }
+
+        private void RegisterTypes(IServiceCollection services)
+        {
             services.AddScoped<MovieCatalogContext>();
         }
 
@@ -49,6 +60,7 @@ namespace MovieCatalog
 
             app.UseAuthorization();
 
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -60,7 +72,7 @@ namespace MovieCatalog
                     name: "auth",
                     pattern: "{controller=auth}/{action=Login}/{id?}"
                 );
-            });
+            });           
         }
     }
 }

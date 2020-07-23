@@ -8,7 +8,7 @@ using MovieCatalog.Dao;
 
 namespace MovieCatalog.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
 
         protected readonly MovieCatalogContext _context;
@@ -18,6 +18,14 @@ namespace MovieCatalog.Controllers
         {
             _logger = logger;
             _context = context;
+        }
+
+        protected virtual string ControllerName() => null;
+        protected IActionResult ControllerRedirect(string action)
+        {
+            if (ControllerName() == null)
+                return Redirect("Home/NotFound");
+            return Redirect($"/{action}");
         }
 
     }

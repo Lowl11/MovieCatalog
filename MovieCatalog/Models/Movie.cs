@@ -13,7 +13,7 @@ namespace MovieCatalog.Models
 
         public string Content { get; set; }
 
-        public int PublishYear { get; set; }
+        public int? PublishYear { get; set; }
 
         public string Producer { get; set; }
 

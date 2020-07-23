@@ -20,18 +20,21 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (ViewBag.Viewer != null)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="auth" asp-action="logout">Выйти</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="catalog" asp-action="add">Добавить фильм</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="auth" asp-action="logout">Выйти</a>
+                            </li>
                         }
                         else
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="auth" asp-action="login">Авторизация</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-controller="auth" asp-action="register">Регистрация</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="auth" asp-action="login">Авторизация</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-controller="auth" asp-action="register">Регистрация</a>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -40,7 +43,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="jumbotron">
+                @RenderBody()
+            </div>
         </main>
     </div>
 

@@ -1,6 +1,9 @@
 ﻿@model MovieCatalog.ViewModels.AuthViewModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
 
-
+<h1>@ViewData["Title"]</h1>
 @if (Model.ErrorMessage != null)
 {
     <div class="alert alert-danger">

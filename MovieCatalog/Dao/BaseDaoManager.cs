@@ -23,11 +23,20 @@ namespace MovieCatalog.Dao
             return _context.Set<T>();
         }
 
-        protected void Add(T record)
+        public T GetById(int id)
+        {
+            return _context.Set<T>()
+                .SingleOrDefault(x => x.Id == id);
+        }
+
+        public void Add(T record)
         {
             _context.Add(record);
             _context.SaveChanges();
         }
+
+        public void SaveChanges()
+           => _context.SaveChanges();
 
     }
 }

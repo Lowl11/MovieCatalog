@@ -1,0 +1,22 @@
+﻿@model MovieCatalog.ViewModels.MoviesViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+    @foreach (Movie movie in Model.Movies)
+    {
+        <div class="movie">
+            <img src="@movie.CoverUrl" alt="@movie.Title" />
+            <div class="movie-info">
+                <div class="title">@movie.Title</div>
+                <div class="year">@movie.PublishYear</div>
+                <div class="producer">@movie.Producer</div>
+                <div class="content">@movie.Content</div>
+            </div>
+        </div>
+    }
+</div>

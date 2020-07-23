@@ -20,8 +20,8 @@ namespace MovieCatalog.Dao
         public IEnumerable<Movie> GetPage(int? page)
         {
             int pageNumber = page ?? 1;
-            return GetAll()
-                .Skip(pageNumber * MoviesPerPage)
+            return GetMovies()
+                .Skip(pageNumber-1 * MoviesPerPage)
                 .Take(MoviesPerPage)
                 .AsEnumerable();
         }
@@ -33,7 +33,7 @@ namespace MovieCatalog.Dao
                 movie.AuthorId = author.Id;
                 Add(movie);
             }
-            catch (Exception exception)
+            catch
             {
                 return new Exception("Произошла ошибка при добавлении фильма");
             }
@@ -51,11 +51,10 @@ namespace MovieCatalog.Dao
             SaveChanges();
         }
 
-        public IEnumerable<Movie> GetMoviesWithAuthor()
+        public IQueryable<Movie> GetMovies()
         {
             return GetAll()
-                .Include(movie => movie.Author)
-                .AsEnumerable();
+                .Include(movie => movie.Author);
         }
 
     }

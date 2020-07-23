@@ -26,3 +26,12 @@
         }
     </div>
 }
+
+<div class="pagination-wrapper">
+    <div class="pagination">
+        @for (int page = 0; page <= Model.Pages; page++)
+        {
+            <a href="/catalog/movies?page=@(page+1)" class="pagination-page">@(page+1)</a>
+        }
+    </div>
+</div>

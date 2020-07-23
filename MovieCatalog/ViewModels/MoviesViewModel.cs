@@ -11,5 +11,7 @@ namespace MovieCatalog.ViewModels
 
         public IEnumerable<Movie> Movies { get; set; }
 
+        public int Pages { get; set; }
+
     }
 }

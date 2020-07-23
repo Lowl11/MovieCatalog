@@ -25,9 +25,8 @@ namespace MovieCatalog.Controllers
         {
             var vm = new MoviesViewModel();
             var movieDaoManager = new MovieDaoManager(_context);
-            vm.Movies = movieDaoManager.GetMovies()
-                .AsEnumerable()
-                .Reverse();
+            vm.Movies = movieDaoManager.GetPage(page-1).AsEnumerable();
+            vm.Pages = movieDaoManager.GetAll().Count() / 10;
             return View("~/Views/Movies/Index.cshtml", vm);
         }
 

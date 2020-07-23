@@ -33,3 +33,26 @@
     top: 10px;
     right: 100px;
 }
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-wrapper .pagination {
+    display: flex;
+    flex-direction: row;
+}
+
+.pagination-wrapper .pagination .pagination-page {
+    border: 2px solid #4287f5;
+    margin: 0 3px;
+    padding: 0 3px;
+}
+
+.pagination-wrapper .pagination .pagination-page:hover {
+    text-decoration: none;
+    background: #4287f5;
+    color: #fff;
+}

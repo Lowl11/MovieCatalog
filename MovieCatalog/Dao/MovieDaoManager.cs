@@ -19,11 +19,12 @@ namespace MovieCatalog.Dao
 
         public IEnumerable<Movie> GetPage(int? page)
         {
-            int pageNumber = page ?? 1;
+            int pageNumber = page ?? 0;
             return GetMovies()
-                .Skip(pageNumber-1 * MoviesPerPage)
+                .Skip(pageNumber * MoviesPerPage)
                 .Take(MoviesPerPage)
-                .AsEnumerable();
+                .AsEnumerable()
+                .Reverse();
         }
 
         public Exception AddMovie(Movie movie, Viewer author)

@@ -9,10 +9,11 @@
     <div class="movie">
         <img src="@movie.CoverUrl" alt="@movie.Title" />
         <div class="movie-info">
-            <div class="title">@movie.Title</div>
-            <div class="year">@movie.PublishYear</div>
-            <div class="producer">@movie.Producer</div>
-            <div class="content">@movie.Content</div>
+            <div class="title"><b>Название: </b>@movie.Title</div>
+            <div class="year"><b>Год: </b>@movie.PublishYear</div>
+            <div class="producer"><b>Режиссер: </b>@movie.Producer</div>
+            <div class="content"><b>Описание: </b>@movie.Content</div>
+            <div class="author"><b>Залил: </b>@movie.Author.Username</div>
         </div>
     </div>
 }

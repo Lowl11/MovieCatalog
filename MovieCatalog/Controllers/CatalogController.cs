@@ -5,6 +5,7 @@ using MovieCatalog.Helpers;
 using MovieCatalog.Models;
 using MovieCatalog.ViewModels;
 using System;
+using System.Linq;
 
 namespace MovieCatalog.Controllers
 {
@@ -24,7 +25,9 @@ namespace MovieCatalog.Controllers
         {
             var vm = new MoviesViewModel();
             var movieDaoManager = new MovieDaoManager(_context);
-            vm.Movies = movieDaoManager.GetMovies();
+            vm.Movies = movieDaoManager.GetMovies()
+                .AsEnumerable()
+                .Reverse();
             return View("~/Views/Movies/Index.cshtml", vm);
         }
 

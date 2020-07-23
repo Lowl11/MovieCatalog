@@ -1,0 +1,22 @@
+﻿.movie {
+    border: 2px solid #668ed1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+}
+
+.movie img {
+    justify-self: flex-start;
+    width: 180px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.movie .movie-info {
+    justify-self: flex-end;
+    width: 100%;
+    height: 200px;
+    padding: 5px;
+    padding-left: 10px;
+}

@@ -46,10 +46,12 @@ namespace MovieCatalog.Controllers
         {
             var movieDaoManager = new MovieDaoManager(_context);
             Exception error = movieDaoManager.AddMovie(movie, ViewerHelper.GetCurrent(HttpContext));
+
             if (error != null)
                 ErrorHelper.SetFormError(HttpContext, error);
             else
                 FormMessageHelper.SetSuccessMessage(HttpContext, "Фильм добавлен успешно!");
+
             return ControllerRedirect("add");
         }
 
@@ -80,12 +82,16 @@ namespace MovieCatalog.Controllers
             if (errorMessage != null)
             {
                 vm.ErrorMessage = errorMessage;
+                ErrorHelper.RemoveFormError(HttpContext);
                 return;
             }
 
             string successMessage = FormMessageHelper.GetSuccessMessage(HttpContext);
             if (successMessage != null)
+            {
                 vm.SuccessMessage = successMessage;
+                FormMessageHelper.RemoveSuccessMessage(HttpContext);
+            }
         }
 
     }

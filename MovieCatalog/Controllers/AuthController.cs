@@ -92,7 +92,10 @@ namespace MovieCatalog.Controllers
         {
             string errorMessage = ErrorHelper.GetFormError(HttpContext);
             if (errorMessage != null)
+            {
                 vm.ErrorMessage = errorMessage;
+                ErrorHelper.RemoveFormError(HttpContext);
+            }
         }
 
     }

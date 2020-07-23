@@ -12,14 +12,13 @@ namespace MovieCatalog.Helpers
         private const string FormErrorSessionKey = "form-error";
 
         public static void SetFormError(HttpContext httpContext, Exception error)
-        {
-            httpContext.Session.SetString(FormErrorSessionKey, error.Message);
-        }
+            => httpContext.Session.SetString(FormErrorSessionKey, error.Message);
 
         public static string GetFormError(HttpContext httpContext)
-        {
-            return httpContext.Session.GetString(FormErrorSessionKey);
-        }
+            => httpContext.Session.GetString(FormErrorSessionKey);
+
+        public static void RemoveFormError(HttpContext httpContext)
+            => httpContext.Session.Remove(FormErrorSessionKey);
 
     }
 }

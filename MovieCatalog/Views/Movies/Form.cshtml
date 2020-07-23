@@ -15,7 +15,7 @@
 }
 <form asp-controller="catalog" asp-action="add" method="post">
     <input type="text" name="title" value="@(Model.Movie?.Title ?? "")" placeholder="Название" class="form-control" required />
-    <input type="number" name="publish-year" value="@(Model.Movie?.PublishYear ?? 0)" placeholder="Год" class="form-control" required />
+    <input type="number" name="publishyear" value="@(Model.Movie?.PublishYear ?? 0)" placeholder="Год" class="form-control" required />
     <input type="text" name="producer" value="@(Model.Movie?.Producer ?? "")" placeholder="Режиссер" class="form-control" required />
     <textarea class="form-control" rows="3" name="content" placeholder="Описание...">@(Model.Movie?.Content ?? "")</textarea>
     <button type="submit" class="btn btn-primary">Добавить</button>

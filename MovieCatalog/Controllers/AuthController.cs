@@ -49,5 +49,13 @@ namespace MovieCatalog.Controllers
             return Redirect("/");
         }
 
+        public const string LogoutActionName = "logout";
+        [ActionName(LogoutActionName), HttpGet]
+        public IActionResult Logout()
+        {
+            ViewerHelper.RemoveCurrent(HttpContext);
+            return Redirect("/");
+        }
+
     }
 }

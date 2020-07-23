@@ -35,5 +35,10 @@ namespace MovieCatalog.Helpers
             return viewer;
         }
 
+        public static void RemoveCurrent(HttpContext httpContext)
+        {
+            httpContext.Session.Remove(CurrentViewerSessionKey);
+        }
+
     }
 }

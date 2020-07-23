@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MovieCatalog.Migrations
 {
-    public partial class Add_Users_and_Movies : Migration
+    public partial class Add_Movie_and_Viewer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +13,13 @@ namespace MovieCatalog.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Viewers", x => x.Id);
+                    table.UniqueConstraint("Username", x => x.Username);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,6 +44,7 @@ namespace MovieCatalog.Migrations
                         principalTable: "Viewers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.UniqueConstraint("Title", x => x.Title);
                 });
 
             migrationBuilder.CreateIndex(

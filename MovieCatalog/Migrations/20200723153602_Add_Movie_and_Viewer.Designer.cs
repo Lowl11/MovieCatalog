@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieCatalog.Migrations
 {
     [DbContext(typeof(MovieCatalogContext))]
-    [Migration("20200723100043_Add_Users_and_Movies")]
-    partial class Add_Users_and_Movies
+    [Migration("20200723153602_Add_Movie_and_Viewer")]
+    partial class Add_Movie_and_Viewer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

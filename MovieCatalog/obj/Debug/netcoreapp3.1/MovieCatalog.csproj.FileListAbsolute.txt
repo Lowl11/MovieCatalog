@@ -17,8 +17,6 @@ C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalo
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalog.TagHelpers.input.cache
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalog.TagHelpers.output.cache
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalog.RazorCoreGenerate.cache
-C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -57,3 +55,4 @@ C:\Projects\CSharp\MovieCatalog\MovieCatalog\bin\Debug\netcoreapp3.1\Microsoft.E
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Movies\Index.cshtml.g.cs
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalog.csproj.CoreCompileInputs.cache
 C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\MovieCatalog.MvcApplicationPartsAssemblyInfo.cache
+C:\Projects\CSharp\MovieCatalog\MovieCatalog\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Login.cshtml.g.cs

@@ -29,12 +29,13 @@ namespace MovieCatalog.Controllers
             base.OnActionExecuting(filterContext);
         }
 
-        protected virtual string ControllerName() => null;
+        protected virtual string GetControllerName() => null;
         protected IActionResult ControllerRedirect(string action)
         {
-            if (ControllerName() == null)
+            string controllerName = GetControllerName();
+            if (controllerName == null)
                 return Redirect("catalog/not-found");
-            return Redirect($"/{action}");
+            return Redirect($"/{controllerName}/{action}");
         }
 
     }

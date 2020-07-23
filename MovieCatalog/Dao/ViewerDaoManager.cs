@@ -13,21 +13,28 @@ namespace MovieCatalog.Dao
             : base(context)
         {}
 
-        public Viewer Login(string username, string password)
+        public (Viewer, Exception) Login(string username, string password)
         {
             var viewer = FindViewerByUsername(username);
+            if (viewer == null)
+                return (null, new Exception($"Пользователь под именем {username} не найден."));
+
             if (viewer.Password != password)
-                return null;
-            return viewer;
+                return (null, new Exception("Введенный вами пароль и логин не удалось авторизовать."));
+            return (viewer, null);
         }
 
-        public Viewer Register(string username, string password)
+        public (Viewer, Exception) Register(string username, string password)
         {
-            Viewer viewer = new Viewer();
+            Viewer viewer = FindViewerByUsername(username);
+            if (viewer != null)
+                return (viewer, new Exception("Пользователь с таким именем уже существует."));
+
+            viewer = new Viewer();
             viewer.Username = username;
             viewer.Password = password;
             Add(viewer);
-            return viewer;
+            return (viewer, null);
         }
 
         public Viewer FindViewerByUsername(string username)

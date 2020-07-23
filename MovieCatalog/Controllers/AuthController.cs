@@ -15,7 +15,8 @@ namespace MovieCatalog.Controllers
     public class AuthController : BaseController
     {
 
-        protected override string ControllerName() => "auth";
+        public const string ControllerName = "auth";
+        protected override string GetControllerName() => ControllerName;
 
         public AuthController(
             ILogger<AuthController> logger,
@@ -32,7 +33,8 @@ namespace MovieCatalog.Controllers
                 return Redirect("/");
 
             var vm = new AuthViewModel();
-            vm.FormUrl = LoginPostActionName;
+            vm.FormUrl = $"/{ControllerName}/{LoginPostActionName}";
+            FindErrorMessage(vm);
             return View("~/Views/Auth/Login.cshtml", vm);
         }
 
@@ -41,9 +43,12 @@ namespace MovieCatalog.Controllers
         public IActionResult LoginPost(string username, string password)
         {
             var viewerDaoManager = new ViewerDaoManager(_context);
-            Viewer viewer = viewerDaoManager.Login(username, password);
-            if (viewer == null)
+            (Viewer viewer, Exception error) = viewerDaoManager.Login(username, password);
+            if (error != null)
+            {
+                ErrorHelper.SetFormError(HttpContext, error);
                 return ControllerRedirect("login");
+            }
 
             ViewerHelper.SetCurrent(HttpContext, viewer);
             return Redirect("/");
@@ -54,7 +59,8 @@ namespace MovieCatalog.Controllers
         public IActionResult RegisterPage()
         {
             var vm = new AuthViewModel();
-            vm.FormUrl = RegisterPostActionName;
+            vm.FormUrl = $"/{ControllerName}/{RegisterPostActionName}";
+            FindErrorMessage(vm);
             return View("~/Views/Auth/Register.cshtml", vm);
         }
 
@@ -65,9 +71,12 @@ namespace MovieCatalog.Controllers
             if (!password.Equals(repassword))
                 return ControllerRedirect("register");
             var viewerDaoManager = new ViewerDaoManager(_context);
-            var viewer = viewerDaoManager.Register(username, password);
-            if (viewer == null)
+            var (viewer, error) = viewerDaoManager.Register(username, password);
+            if (error != null)
+            {
+                ErrorHelper.SetFormError(HttpContext, error);
                 return ControllerRedirect("register");
+            }
             return ControllerRedirect("login");
         }
 
@@ -77,6 +86,13 @@ namespace MovieCatalog.Controllers
         {
             ViewerHelper.RemoveCurrent(HttpContext);
             return Redirect("/");
+        }
+
+        private void FindErrorMessage(AuthViewModel vm)
+        {
+            string errorMessage = ErrorHelper.GetFormError(HttpContext);
+            if (errorMessage != null)
+                vm.ErrorMessage = errorMessage;
         }
 
     }

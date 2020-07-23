@@ -8,7 +8,8 @@ namespace MovieCatalog.Controllers
     public class CatalogController : BaseController
     {
 
-        protected override string ControllerName() => "catalog";
+        public const string ControllerName = "catalog";
+        protected override string GetControllerName() => ControllerName;
 
         public CatalogController(ILogger<CatalogController> logger, MovieCatalogContext context)
             : base(logger, context)

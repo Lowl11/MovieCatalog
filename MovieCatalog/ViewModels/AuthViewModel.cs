@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace MovieCatalog.ViewModels
@@ -9,6 +10,8 @@ namespace MovieCatalog.ViewModels
     {
 
         public string FormUrl { get; set; }
+
+        public string ErrorMessage { get; set; }
 
     }
 }

@@ -21,16 +21,16 @@
                         @if (ViewBag.Viewer != null)
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="auth/logout">Выйти</a>
+                            <a class="nav-link text-dark" asp-controller="auth" asp-action="logout">Выйти</a>
                         </li>
                         }
                         else
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="auth/login">Авторизация</a>
+                            <a class="nav-link text-dark" asp-controller="auth" asp-action="login">Авторизация</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" href="auth/register">Регистрация</a>
+                            <a class="nav-link text-dark" asp-controller="auth" asp-action="register">Регистрация</a>
                         </li>
                         }
                     </ul>

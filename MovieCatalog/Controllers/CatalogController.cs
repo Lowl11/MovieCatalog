@@ -76,6 +76,19 @@ namespace MovieCatalog.Controllers
             return null;
         }
 
+        public const string DeleteMovieActionName = "delete";
+        [ActionName(DeleteMovieActionName)]
+        public IActionResult DeleteMovie(int? id)
+        {
+            if (id != null)
+            {
+                var movieDaoManager = new MovieDaoManager(_context);
+                movieDaoManager.Delete(id.Value);
+            }
+
+            return ControllerRedirect("movies");
+        }
+
         private void FindSuccessAndErrorMessages(MovieFormViewModel vm)
         {
             string errorMessage = ErrorHelper.GetFormError(HttpContext);

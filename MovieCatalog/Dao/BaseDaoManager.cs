@@ -35,6 +35,12 @@ namespace MovieCatalog.Dao
             _context.SaveChanges();
         }
 
+        public void Delete(int id)
+        {
+            _context.Set<T>().Remove(GetById(id));
+            _context.SaveChanges();
+        }
+
         public void SaveChanges()
            => _context.SaveChanges();
 

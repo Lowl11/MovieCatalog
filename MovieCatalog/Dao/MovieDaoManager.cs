@@ -41,15 +41,23 @@ namespace MovieCatalog.Dao
             return null;
         }
 
-        public void UpdateMovie(Movie updated)
+        public Exception UpdateMovie(Movie updated)
         {
-            Movie fromSource = GetMovieById(updated.Id);
-            fromSource.Title = updated.Title;
-            fromSource.PublishYear = updated.PublishYear;
-            fromSource.Producer = updated.Producer;
-            fromSource.Content = updated.Content;
-            fromSource.CoverUrl = updated.CoverUrl;
-            SaveChanges();
+            try
+            {
+                Movie fromSource = GetMovieById(updated.Id);
+                fromSource.Title = updated.Title;
+                fromSource.PublishYear = updated.PublishYear;
+                fromSource.Producer = updated.Producer;
+                fromSource.Content = updated.Content;
+                fromSource.CoverUrl = updated.CoverUrl;
+                SaveChanges();
+            }
+            catch
+            {
+                return new Exception("Произошла ошибка при сохранении изменений");
+            }
+            return null;
         }
 
         public IQueryable<Movie> GetMovies()

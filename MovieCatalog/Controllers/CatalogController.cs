@@ -99,7 +99,11 @@ namespace MovieCatalog.Controllers
         public IActionResult EditMovie(Movie movie)
         {
             var movieDaoManager = new MovieDaoManager(_context);
-            movieDaoManager.UpdateMovie(movie);
+            Exception error = movieDaoManager.UpdateMovie(movie);
+            if (error != null)
+                ErrorHelper.SetFormError(HttpContext, error);
+            else
+                FormMessageHelper.SetSuccessMessage(HttpContext, "Изменения сохранены успешно");
             return ControllerRedirect($"edit?id={movie.Id}");
         }
 

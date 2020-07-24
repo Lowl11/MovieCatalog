@@ -58,5 +58,12 @@ namespace MovieCatalog.Dao
                 .Include(movie => movie.Author);
         }
 
+        public Movie GetMovieById(int? id)
+        {
+            return GetAll()
+                .Include(movie => movie.Author)
+                .SingleOrDefault(movie => movie.Id == id.Value);
+        }
+
     }
 }

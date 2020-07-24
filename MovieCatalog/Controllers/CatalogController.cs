@@ -30,6 +30,20 @@ namespace MovieCatalog.Controllers
             return View("~/Views/Movies/Index.cshtml", vm);
         }
 
+        public const string MoviePageActionName = "movie";
+        [ActionName(MoviePageActionName), HttpGet]
+        public IActionResult MoviePage(int? id)
+        {
+            var vm = new MoviePageViewModel();
+            var movieDaoManager = new MovieDaoManager(_context);
+            Movie movie = movieDaoManager.GetMovieById(id.Value);
+            if (movie == null)
+                return ControllerRedirect("movies");
+
+            vm.Movie = movie;
+            return View("~/Views/Movies/Movie.cshtml", vm);
+        }
+
         public const string AddMoviePageActionName = "add";
         [ActionName(AddMoviePageActionName), HttpGet]
         public IActionResult AddMoviePage()

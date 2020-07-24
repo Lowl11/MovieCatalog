@@ -1,0 +1,25 @@
+﻿@model MovieCatalog.ViewModels.MoviePageViewModel
+@{
+    ViewData["Title"] = $"{Model.Movie.Title}";
+    Viewer loggedViewer = (Viewer)ViewBag.Viewer;
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="movie">
+    <img src="@Model.Movie.CoverUrl" alt="@Model.Movie.Title" />
+    <div class="movie-info">
+        <div class="title"><b>Название: </b><a href="/catalog/movie?id=@Model.Movie.Id">@Model.Movie.Title</a></div>
+        <div class="year"><b>Год: </b>@Model.Movie.PublishYear</div>
+        <div class="producer"><b>Режиссер: </b>@Model.Movie.Producer</div>
+        <div class="content"><b>Описание: </b>@Model.Movie.Content</div>
+        <div class="author"><b>Залил: </b>@Model.Movie.Author.Username</div>
+    </div>
+    @if (loggedViewer != null)
+    {
+        @if (Model.Movie.AuthorId == loggedViewer.Id)
+        {
+            <a class="btn btn-primary edit-movie" href="/catalog/edit?id=@Model.Movie.Id">Редактировать</a>
+            <a class="btn btn-primary delete-movie" href="/catalog/delete?id=@Model.Movie.Id">Удалить</a>
+        }
+    }
+</div>

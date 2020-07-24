@@ -10,7 +10,7 @@
     <div class="movie">
         <img src="@movie.CoverUrl" alt="@movie.Title" />
         <div class="movie-info">
-            <div class="title"><b>Название: </b>@movie.Title</div>
+            <div class="title"><b>Название: </b><a href="/catalog/movie?id=@movie.Id">@movie.Title</a></div>
             <div class="year"><b>Год: </b>@movie.PublishYear</div>
             <div class="producer"><b>Режиссер: </b>@movie.Producer</div>
             <div class="content"><b>Описание: </b>@movie.Content</div>

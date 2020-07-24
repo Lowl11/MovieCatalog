@@ -11,3 +11,9 @@
     height: 300px;
     margin: 10px;
 }
+
+.covers .cover a {
+    display: block;
+    width: 200px;
+    margin-left: 10px;
+}

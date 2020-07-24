@@ -18,8 +18,8 @@
     {
         @if (Model.Movie.AuthorId == loggedViewer.Id)
         {
-            <a class="btn btn-primary edit-movie" href="/catalog/edit?id=@Model.Movie.Id">Редактировать</a>
-            <a class="btn btn-primary delete-movie" href="/catalog/delete?id=@Model.Movie.Id">Удалить</a>
+            <a class="btn btn-warning edit-movie" href="/catalog/edit?id=@Model.Movie.Id">Редактировать</a>
+            <a class="btn btn-danger delete-movie" href="/catalog/delete?id=@Model.Movie.Id">Удалить</a>
         }
     }
 </div>

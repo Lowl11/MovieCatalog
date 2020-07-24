@@ -54,6 +54,18 @@ namespace MovieCatalog.Controllers
             return ControllerRedirect("upload");
         }
 
+        public const string DeleteFileActionName = "delete";
+        [ActionName(DeleteFileActionName), HttpGet]
+        public IActionResult DeleteImage(string path)
+        {
+            Exception error = FileHelper.DeleteFile(_hostingEnvironment.WebRootPath, path);
+            if (error != null)
+                ErrorHelper.SetFormError(HttpContext, error);
+            else
+                FormMessageHelper.SetSuccessMessage(HttpContext, "Изображение успешно удалено");
+            return ControllerRedirect("upload");
+        }
+
         private void FindSuccessAndErrorMessages(FileFormViewModel vm)
         {
             string errorMessage = ErrorHelper.GetFormError(HttpContext);

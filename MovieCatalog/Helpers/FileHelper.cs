@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Connections;
+using Microsoft.AspNetCore.Http;
 using MovieCatalog.Dao;
 using MovieCatalog.ViewModels;
 using System;
@@ -41,6 +42,21 @@ namespace MovieCatalog.Helpers
                     Url = $"{MovieCoversFolderName}{file.Split("/").Last()}"
                 });
             return files;
+        }
+
+        public static Exception DeleteFile(string absolutePath, string path)
+        {
+            string fileName = path.Split("/").Last();
+            string normalPath = $"{absolutePath}{MovieCoversFolderName}{fileName}";
+            try
+            {
+                File.Delete(normalPath);
+            }
+            catch (Exception exception)
+            {
+                return new Exception("Ошибка при удалении изображения");
+            }
+            return null;
         }
 
         private static string GenerateFileName(string absolutePath)

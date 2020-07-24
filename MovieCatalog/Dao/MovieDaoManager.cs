@@ -21,10 +21,10 @@ namespace MovieCatalog.Dao
         {
             int pageNumber = page ?? 0;
             return GetMovies()
+                .OrderByDescending(movie => movie.Id)
                 .Skip(pageNumber * MoviesPerPage)
                 .Take(MoviesPerPage)
-                .AsEnumerable()
-                .Reverse();
+                .AsEnumerable();
         }
 
         public Exception AddMovie(Movie movie, Viewer author)

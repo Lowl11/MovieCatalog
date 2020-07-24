@@ -18,6 +18,7 @@
     <input type="number" name="publishyear" value="@(Model.Movie?.PublishYear ?? 0)" placeholder="Год" class="form-control" required />
     <input type="text" name="producer" value="@(Model.Movie?.Producer ?? "")" placeholder="Режиссер" class="form-control" required />
     <textarea class="form-control" rows="3" name="content" placeholder="Описание...">@(Model.Movie?.Content ?? "")</textarea>
+    <input type="hidden" name="coverurl" class="form-cover-url" />
     <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
 
@@ -26,7 +27,6 @@
     {
         <div class="cover">
             <img src="@(cover.Url)" class="cover-img" alt="Изображение фильма" />
-            <a class="btn btn-danger" href="/file/delete?path=@(cover.Name)">Удалить</a>
         </div>
     }
 </div>

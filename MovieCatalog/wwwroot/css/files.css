@@ -1,0 +1,13 @@
+﻿.covers {
+    margin: 10px 0;
+}
+
+.covers .cover {
+    display: inline-block;
+}
+
+.covers .cover .cover-img {
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+}

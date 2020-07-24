@@ -56,7 +56,20 @@ namespace MovieCatalog.Controllers
 
         private void FindSuccessAndErrorMessages(FileFormViewModel vm)
         {
-            // 
+            string errorMessage = ErrorHelper.GetFormError(HttpContext);
+            if (errorMessage != null)
+            {
+                vm.ErrorMessage = errorMessage;
+                ErrorHelper.RemoveFormError(HttpContext);
+                return;
+            }
+
+            string successMessage = FormMessageHelper.GetSuccessMessage(HttpContext);
+            if (successMessage != null)
+            {
+                vm.SuccessMessage = successMessage;
+                FormMessageHelper.RemoveSuccessMessage(HttpContext);
+            }
         }
 
     }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using Microsoft.Extensions.Hosting;
 using MovieCatalog.Dao;
 using MovieCatalog.Helpers;
@@ -71,6 +72,11 @@ namespace MovieCatalog
                 endpoints.MapControllerRoute(
                     name: "auth",
                     pattern: "{controller=auth}/{action=Login}/{id?}"
+                );
+
+                endpoints.MapControllerRoute(
+                    name: "file",
+                    pattern: "{controller=file}/{action=uploadpage}/{id?}"
                 );
             });           
         }

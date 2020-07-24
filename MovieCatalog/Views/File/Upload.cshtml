@@ -1,0 +1,19 @@
+﻿@model MovieCatalog.ViewModels.FileFormViewModel
+@{
+    ViewData["Title"] = "Добавление/Редактирование изображений";
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+@if (Model.SuccessMessage != null)
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+<form asp-controller="file" asp-action="upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" class="form-control" />
+    <button type="submit" class="btn btn-primary">Загрузить</button>
+</form>

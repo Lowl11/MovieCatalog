@@ -17,3 +17,12 @@
     <input type="file" name="file" class="form-control" />
     <button type="submit" class="btn btn-primary">Загрузить</button>
 </form>
+
+<div class="covers">
+    @foreach (MovieCatalog.ViewModels.CoverFile cover in Model.Files)
+    {
+        <div class="cover">
+            <img src="@(cover.Url)" class="cover-img" alt="Изображение фильма" />
+        </div>
+    }
+</div>

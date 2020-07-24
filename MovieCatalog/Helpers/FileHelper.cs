@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using MovieCatalog.Dao;
+using MovieCatalog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,6 +29,20 @@ namespace MovieCatalog.Helpers
             return new Exception("Ошибка при загрузке файла");
         }
 
+        public static IEnumerable<CoverFile> GetFiles(string absolutePath)
+        {
+            string fullPath = $"{absolutePath}/{MovieCoversFolderName}";
+            if (!Directory.Exists(fullPath))
+                Directory.CreateDirectory(fullPath);
+
+            IEnumerable<CoverFile> files = Directory.EnumerateFiles(fullPath)
+                .Select(file => new CoverFile() {
+                    Name = file,
+                    Url = $"{MovieCoversFolderName}{file.Split("/").Last()}"
+                });
+            return files;
+        }
+
         private static string GenerateFileName(string absolutePath)
         {
             string fullPath = $"{absolutePath}/{MovieCoversFolderName}";
@@ -43,7 +58,7 @@ namespace MovieCatalog.Helpers
                 if (max < value)
                     max = value;
             }
-            return $"cover{max+1}";
+            return $"cover{max+1}.jpg";
         }
 
     }

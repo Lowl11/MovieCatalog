@@ -37,6 +37,7 @@ namespace MovieCatalog.Controllers
         {
             var vm = new FileFormViewModel();
             vm.FormPostUrl = UploadActionName;
+            vm.Files = FileHelper.GetFiles(_hostingEnvironment.WebRootPath);
             FindSuccessAndErrorMessages(vm);
             return View("~/Views/File/Upload.cshtml", vm);
         }

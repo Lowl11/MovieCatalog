@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
@@ -15,11 +16,13 @@ namespace MovieCatalog.Controllers
 
         protected readonly MovieCatalogContext _context;
         protected readonly ILogger _logger;
-        
-        public BaseController(ILogger logger, MovieCatalogContext context)
+        protected readonly IWebHostEnvironment _hostEnvironment;
+
+        public BaseController(ILogger logger, MovieCatalogContext context, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

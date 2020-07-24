@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
@@ -20,8 +21,9 @@ namespace MovieCatalog.Controllers
 
         public AuthController(
             ILogger<AuthController> logger,
-            MovieCatalogContext context
-        ) : base(logger, context)
+            MovieCatalogContext context,
+            IWebHostEnvironment hostEnvironment
+        ) : base(logger, context, hostEnvironment)
         {}
 
         public const string LoginPageActionName = "login";

@@ -20,3 +20,13 @@
     <textarea class="form-control" rows="3" name="content" placeholder="Описание...">@(Model.Movie?.Content ?? "")</textarea>
     <button type="submit" class="btn btn-primary">Добавить</button>
 </form>
+
+<div class="covers">
+    @foreach (MovieCatalog.ViewModels.CoverFile cover in Model.Covers)
+    {
+        <div class="cover">
+            <img src="@(cover.Url)" class="cover-img" alt="Изображение фильма" />
+            <a class="btn btn-danger" href="/file/delete?path=@(cover.Name)">Удалить</a>
+        </div>
+    }
+</div>

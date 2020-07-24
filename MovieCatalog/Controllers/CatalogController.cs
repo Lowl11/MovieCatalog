@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieCatalog.Dao;
 using MovieCatalog.Helpers;
@@ -15,8 +16,11 @@ namespace MovieCatalog.Controllers
         public const string ControllerName = "catalog";
         protected override string GetControllerName() => ControllerName;
 
-        public CatalogController(ILogger<CatalogController> logger, MovieCatalogContext context)
-            : base(logger, context)
+        public CatalogController(
+            ILogger<CatalogController> logger,
+            MovieCatalogContext context,
+            IWebHostEnvironment hostEnvironment
+        ) : base(logger, context, hostEnvironment)
         {}
 
         public const string MainPageActionName = "movies";
@@ -49,6 +53,7 @@ namespace MovieCatalog.Controllers
         public IActionResult AddMoviePage()
         {
             var vm = new MovieFormViewModel();
+            vm.Covers = FileHelper.GetFiles(_hostEnvironment.WebRootPath);
             FindSuccessAndErrorMessages(vm);
             return View("~/Views/Movies/Form.cshtml", vm);
         }
@@ -77,6 +82,7 @@ namespace MovieCatalog.Controllers
 
             var movieDaoManager = new MovieDaoManager(_context);
             var vm = new MovieFormViewModel();
+            vm.Covers = FileHelper.GetFiles(_hostEnvironment.WebRootPath);
             vm.Movie = movieDaoManager.GetById(id.Value);
             FindSuccessAndErrorMessages(vm);
             return View("~/Views/Movies/Form.cshtml", vm);

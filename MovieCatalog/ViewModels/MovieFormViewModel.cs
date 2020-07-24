@@ -15,5 +15,7 @@ namespace MovieCatalog.ViewModels
 
         public string ErrorMessage { get; set; }
 
+        public IEnumerable<CoverFile> Covers { get; set; }
+
     }
 }

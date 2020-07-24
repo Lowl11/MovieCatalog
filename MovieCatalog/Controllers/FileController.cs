@@ -18,18 +18,14 @@ namespace MovieCatalog.Controllers
 
         public const string ControllerName = "file";
 
-        private readonly IWebHostEnvironment _hostingEnvironment;
-
         protected override string GetControllerName() => ControllerName;
 
         public FileController(
             ILogger<FileController> logger,
             MovieCatalogContext context,
             IWebHostEnvironment hostEnvironment
-        ) : base(logger, context)
-        {
-            _hostingEnvironment = hostEnvironment;
-        }
+        ) : base(logger, context, hostEnvironment)
+        {}
 
         public const string UploadPageActionName = "upload";
         [ActionName(UploadPageActionName), HttpGet]
@@ -37,7 +33,7 @@ namespace MovieCatalog.Controllers
         {
             var vm = new FileFormViewModel();
             vm.FormPostUrl = UploadActionName;
-            vm.Files = FileHelper.GetFiles(_hostingEnvironment.WebRootPath);
+            vm.Files = FileHelper.GetFiles(_hostEnvironment.WebRootPath);
             FindSuccessAndErrorMessages(vm);
             return View("~/Views/File/Upload.cshtml", vm);
         }
@@ -46,7 +42,7 @@ namespace MovieCatalog.Controllers
         [ActionName(UploadActionName), HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            Exception error = await FileHelper.UploadFile(file, _hostingEnvironment.WebRootPath);
+            Exception error = await FileHelper.UploadFile(file, _hostEnvironment.WebRootPath);
             if (error != null)
                 ErrorHelper.SetFormError(HttpContext, error);
             else
@@ -58,7 +54,7 @@ namespace MovieCatalog.Controllers
         [ActionName(DeleteFileActionName), HttpGet]
         public IActionResult DeleteImage(string path)
         {
-            Exception error = FileHelper.DeleteFile(_hostingEnvironment.WebRootPath, path);
+            Exception error = FileHelper.DeleteFile(_hostEnvironment.WebRootPath, path);
             if (error != null)
                 ErrorHelper.SetFormError(HttpContext, error);
             else

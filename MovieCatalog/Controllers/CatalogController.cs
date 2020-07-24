@@ -53,8 +53,11 @@ namespace MovieCatalog.Controllers
         public IActionResult AddMoviePage()
         {
             var vm = new MovieFormViewModel();
+            
             vm.Covers = FileHelper.GetFiles(_hostEnvironment.WebRootPath);
+            vm.FormPostUrl = AddMovieActionName;
             FindSuccessAndErrorMessages(vm);
+
             return View("~/Views/Movies/Form.cshtml", vm);
         }
 
@@ -82,9 +85,12 @@ namespace MovieCatalog.Controllers
 
             var movieDaoManager = new MovieDaoManager(_context);
             var vm = new MovieFormViewModel();
+
             vm.Covers = FileHelper.GetFiles(_hostEnvironment.WebRootPath);
             vm.Movie = movieDaoManager.GetById(id.Value);
+            vm.FormPostUrl = EditMovieActionName;
             FindSuccessAndErrorMessages(vm);
+
             return View("~/Views/Movies/Form.cshtml", vm);
         }
 
@@ -92,7 +98,9 @@ namespace MovieCatalog.Controllers
         [ActionName(EditMovieActionName), HttpPost]
         public IActionResult EditMovie(Movie movie)
         {
-            return null;
+            var movieDaoManager = new MovieDaoManager(_context);
+            movieDaoManager.UpdateMovie(movie);
+            return ControllerRedirect($"edit?id={movie.Id}");
         }
 
         public const string DeleteMovieActionName = "delete";

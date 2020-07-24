@@ -13,7 +13,11 @@
 {
     <div class="alert alert-success">@Model.SuccessMessage</div>
 }
-<form asp-controller="catalog" asp-action="add" method="post">
+<form action="@($"/{MovieCatalog.Controllers.CatalogController.ControllerName}/{Model.FormPostUrl}")" method="post">
+    @if (Model.Movie != null)
+    {
+        <input type="hidden" name="id" value="@(Model.Movie.Id)" />
+    }
     <input type="text" name="title" value="@(Model.Movie?.Title ?? "")" placeholder="Название" class="form-control" required />
     <input type="number" name="publishyear" value="@(Model.Movie?.PublishYear ?? 0)" placeholder="Год" class="form-control" required />
     <input type="text" name="producer" value="@(Model.Movie?.Producer ?? "")" placeholder="Режиссер" class="form-control" required />

@@ -43,7 +43,7 @@ namespace MovieCatalog.Dao
 
         public void UpdateMovie(Movie updated)
         {
-            Movie fromSource = GetById(updated.Id);
+            Movie fromSource = GetMovieById(updated.Id);
             fromSource.Title = updated.Title;
             fromSource.PublishYear = updated.PublishYear;
             fromSource.Producer = updated.Producer;

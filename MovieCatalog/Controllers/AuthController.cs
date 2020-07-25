@@ -35,7 +35,7 @@ namespace MovieCatalog.Controllers
                 return Redirect("/");
 
             var vm = new AuthViewModel();
-            vm.FormUrl = $"/{ControllerName}/{LoginPostActionName}";
+            vm.FormPostUrl = $"/{ControllerName}/{LoginPostActionName}";
             FindErrorMessage(vm);
             return View("~/Views/Auth/Login.cshtml", vm);
         }
@@ -61,7 +61,7 @@ namespace MovieCatalog.Controllers
         public IActionResult RegisterPage()
         {
             var vm = new AuthViewModel();
-            vm.FormUrl = $"/{ControllerName}/{RegisterPostActionName}";
+            vm.FormPostUrl = $"/{ControllerName}/{RegisterPostActionName}";
             FindErrorMessage(vm);
             return View("~/Views/Auth/Register.cshtml", vm);
         }

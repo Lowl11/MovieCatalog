@@ -10,7 +10,14 @@
         @Model.ErrorMessage
     </div>
 }
-<form method="post" action="@Model.FormUrl">
+
+@if (Model.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        @Model.SuccessMessage
+    </div>
+}
+<form method="post" action="@Model.FormPostUrl">
     <input type="text" name="username" placeholder="Имя пользователя" class="form-control" required />
     <input type="password" name="password" placeholder="Пароль" class="form-control" required />
     <input type="password" name="repassword" placeholder="Повтор пароля" class="form-control" required />

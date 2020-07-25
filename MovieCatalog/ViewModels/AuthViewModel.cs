@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieCatalog.ViewModels
 {
-    public class AuthViewModel
+    public class AuthViewModel : BaseFormViewModel
     {
-
-        public string FormUrl { get; set; }
-
-        public string ErrorMessage { get; set; }
-
+        //
     }
 }

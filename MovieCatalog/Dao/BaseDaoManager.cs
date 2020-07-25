@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace MovieCatalog.Dao
 {
-    public class BaseDaoManager<T>
+    /// <summary>
+    /// Абстрактный класс предостовляющий базовый функционал для работы с моделями БД
+    /// </summary>
+    /// <typeparam name="T">Тип данных которое имеет представление в базе данных</typeparam>
+    public abstract class BaseDaoManager<T>
         where T : DbModel
     {
 

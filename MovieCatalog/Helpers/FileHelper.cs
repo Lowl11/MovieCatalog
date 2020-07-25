@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MovieCatalog.Helpers
 {
+
     public class FileHelper
     {
 
@@ -52,13 +53,20 @@ namespace MovieCatalog.Helpers
             {
                 File.Delete(normalPath);
             }
-            catch (Exception exception)
+            catch
             {
                 return new Exception("Ошибка при удалении изображения");
             }
             return null;
         }
 
+        /// <summary>
+        /// Генерирует новое имя для файла (обложки).
+        /// Определяет последний постфикс в названии и прибавляет +1 к новому названию.
+        /// К примеру, последний файл называется - cover3.jpg, значит новый - cover4.jpg
+        /// </summary>
+        /// <param name="absolutePath"></param>
+        /// <returns></returns>
         private static string GenerateFileName(string absolutePath)
         {
             string fullPath = $"{absolutePath}/{MovieCoversFolderName}";

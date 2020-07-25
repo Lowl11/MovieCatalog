@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MovieCatalog.Helpers
 {
+    /// <summary>
+    /// Содержит функционал позволяющий работать с сообщением об ошибке в сессии
+    /// </summary>
     public class ErrorHelper
     {
 
